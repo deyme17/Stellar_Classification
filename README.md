@@ -1,2 +1,7 @@
 # Stellar_Classification
-This ML project focuses on stellar classification using advanced data preprocessing and machine learning techniques. The goal is to develop a predictive model that can accurately classify astronomical objects based on their spectral characteristics.
+Machine learning project for stellar object classification using GradientBoostingClassifier, featuring custom data preprocessing and a Flask-based prediction API.
+__Key Features__
+ - Advanced data preprocessing
+ - SVM classification model
+ - RESTful prediction API
+ - Dockerized deployment
