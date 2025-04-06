@@ -1,0 +1,60 @@
+{
+    "description": {
+      "X": ["obj_ID", "alpha", "delta", "u", "g", "r", "i", "z", "run_ID",
+            "rerun_ID", "cam_col", "field_ID", "spec_obj_ID", "redshift", "plate",
+            "MJD", "fiber_ID"],
+      "final_columns": ["u", "g", "r", "i", "z", "redshift", "plate"],
+      "y": "class",
+      "metrics": "accuracy_score"
+    },
+    "operations": [
+      {
+        "operation_number": 1,
+        "operation_name": "select_columns",
+        "params": {
+          "in_columns": ["u", "g", "r", "i", "z", "redshift", "plate"]
+        }
+      },
+      {
+        "operation_number": 2,
+        "operation_name": "fill_nans",
+        "params": {
+          "in_columns": ["u", "g", "r", "i", "z", "redshift", "plate"],
+          "methods": ["mean", "mean", "mean", "mean", "mean", "mean", "zero"]
+        }
+      },
+      {
+        "operation_number": 3,
+        "operation_name": "handle_outliers",
+        "params": {
+          "in_columns": ["u", "g", "r", "i", "z"],
+          "modes": ["percentile", "percentile", "percentile", "percentile", "percentile"],
+          "methods": ["cap", "cap", "cap", "cap", "cap"],
+          "upper_quantiles": [0.75, 0.75, 0.75, 0.75, 0.75],
+          "lower_quantiles": [0.25, 0.25, 0.25, 0.25, 0.25],
+          "factors": [1.5, 1.5, 1.5, 1.5, 1.5]
+        }
+      },
+      {
+        "operation_number": 4,
+        "operation_name": "log_transform",
+        "params": {
+          "in_columns": ["redshift"]
+        }
+      },
+      {
+        "operation_number": 5,
+        "operation_name": "encode_labels",
+        "params": {
+          "in_columns": ["plate"]
+        }
+      },
+      {
+        "operation_number": 6,
+        "operation_name": "standardize",
+        "params": {
+          "in_columns": ["u", "g", "r", "i", "z", "redshift"]
+        }
+      }
+    ]
+  }
