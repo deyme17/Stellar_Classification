@@ -3,6 +3,6 @@ Machine learning project for stellar object classification using GradientBoostin
 
 __Key Features__
  - Advanced data preprocessing
- - SVM classification model
+ - GBoost classification model
  - RESTful prediction API
  - Dockerized deployment
