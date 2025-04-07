@@ -8,7 +8,7 @@ class DataLoader(object):
     def fit(self, dataset):
         self.dataset = dataset.copy()
 
-    def load_data(self):
+    def load_data(self, cap_outliars=True):
         # feature selection
         Xcols = ['u', 'g', 'r', 'i', 'z', 'redshift', 'plate']
         self.dataset = self.dataset[Xcols]
@@ -20,18 +20,20 @@ class DataLoader(object):
 
         # outliars
             # 1) IQR
-        outliar_cols = ['u', 'g', 'r', 'i', 'z']
-        for column in outliar_cols:
-            Q1 = self.dataset[column].quantile(0.25)
-            Q3 = self.dataset[column].quantile(0.75)
+        if cap_outliars:
+            outliar_cols = ['u', 'g', 'r', 'i', 'z']
+            for column in outliar_cols:
+                Q1 = self.dataset[column].quantile(0.25)
+                Q3 = self.dataset[column].quantile(0.75)
 
-            IQR = Q3 - Q1
+                IQR = Q3 - Q1
 
-            lower_limit = Q1 - 1.5 * IQR
-            upper_limit = Q3 + 1.5 * IQR
+                lower_limit = Q1 - 1.5 * IQR
+                upper_limit = Q3 + 1.5 * IQR
 
-            self.dataset.loc[self.dataset[column] < lower_limit, column] = lower_limit
-            self.dataset.loc[self.dataset[column] > upper_limit, column] = upper_limit
+                self.dataset.loc[self.dataset[column] < lower_limit, column] = lower_limit
+                self.dataset.loc[self.dataset[column] > upper_limit, column] = upper_limit
+                
             # 2) log tranformation
         self.dataset['redshift'] = np.log1p(self.dataset['redshift'])
 

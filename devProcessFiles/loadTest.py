@@ -1,8 +1,8 @@
-from app.utils.dataloader import DataLoader
+from utils.dataloader import DataLoader
 import pandas as pd
-from app.settings.constants import TRAIN_CSV
+from settings.constants import TRAIN_CSV
 
-df = pd.read_csv(TRAIN_CSV, header = 0)
+df = pd.read_csv(TRAIN_CSV, header=0)
 
 dl = DataLoader()
 dl.fit(df)

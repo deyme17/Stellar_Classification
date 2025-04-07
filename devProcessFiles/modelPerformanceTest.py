@@ -3,11 +3,11 @@ import json
 import pandas as pd
 from sklearn.ensemble import GradientBoostingClassifier
 
-from app.utils.dataloader import DataLoader 
-from app.settings.constants import VAL_CSV, SAVED_ESTIMATOR
+from utils.dataloader import DataLoader 
+from settings.constants import VAL_CSV, SAVED_ESTIMATOR
 
 
-with open('app/settings/specifications.json') as f:
+with open('settings/specifications.json') as f:
     specifications = json.load(f)
 
 x_columns = specifications['description']['X']

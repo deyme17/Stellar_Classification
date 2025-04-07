@@ -1,4 +1,4 @@
-from app.utils.dataset import Dataset
+from utils.dataset import Dataset
 
 ds = Dataset('data\\train.csv')
 
