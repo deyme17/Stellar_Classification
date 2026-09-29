@@ -1,5 +1,5 @@
-from utils import Predictor
-from utils import DataLoader
+from app.utils import Predictor
+from app.utils import DataLoader
 from flask import Flask, request, jsonify, make_response
 import pandas as pd
 import json
@@ -25,6 +25,7 @@ def predict():
     response_dict = {'prediction': predictor.predict(processed_df).tolist()}
     
     return make_response(jsonify(response_dict), 200)
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=8000)

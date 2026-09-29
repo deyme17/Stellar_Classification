@@ -2,13 +2,14 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
+from .dataset import Dataset
 
 
 class DataLoader(object):
-    def fit(self, dataset):
+    def fit(self, dataset: Dataset):
         self.dataset = dataset.copy()
 
-    def load_data(self, cap_outliars=True):
+    def load_data(self, cap_outliars: bool = True) -> Dataset:
         # feature selection
         Xcols = ['u', 'g', 'r', 'i', 'z', 'redshift', 'plate']
         self.dataset = self.dataset[Xcols]
