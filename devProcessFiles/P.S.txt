@@ -1,4 +1,0 @@
-!!!
-Before you run any of this files you need to move file to /app
-and change the working dir on /app.
-!!!
